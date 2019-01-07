@@ -2,7 +2,6 @@ import Store from './Store';
 import Utils from './Utils';
 
 const container = document.querySelector('.container');
-
 export default class UI {
   static createCards(people) {
     if (!people || people.length === 0) return;
@@ -100,7 +99,7 @@ export default class UI {
     for (const [index, person] of people.entries()) {
       sidebar.innerHTML += `
         <section class="sidebar-item">
-          <p class="sidebar-name">${person.fullName()}</p>
+          <p class="sidebar-name ${index === 0 ? 'bold' : ''}">${index + 1}. ${person.fullName()}</p>
           ${person.rating ? `<p class="rating sidebar-rating"><span class="sidebar-rating-icon"></span>${person.rating}</p>` : ''}
         </section>
       `;
@@ -110,14 +109,14 @@ export default class UI {
     return sidebar;
   }
 
-  static populateCards() {
-    const people = Store.getPeople();
+  static populateCards(peopleArr) {
+    const people = peopleArr ? peopleArr : Store.loadPeople();
     const sortedByName = Utils.abcSort(people);
     UI.createCards(sortedByName);
   }
 
-  static populateSidebar() {
-    const people = Store.getPeople();
+  static populateSidebar(peopleArr) {
+    const people = peopleArr ? peopleArr : Store.loadPeople();
     if (people && people.length) {
       const sortedByRating = Utils.numberSort(people);
       const sidebar = UI.createSidebar(sortedByRating);
@@ -133,5 +132,16 @@ export default class UI {
     const index = people.indexOf(foundPerson);
     foundPerson.increaseRating();
     Store.update(foundPerson, index);
+  }
+
+  static createLoadingOverlay() {
+    const overlay = document.createElement('div');
+    overlay.classList.add('white-overlay');
+    overlay.innerText = 'Loading';
+    document.body.prepend(overlay);
+  }
+
+  static removeLoadingOverlay() {
+    document.querySelector('.white-overlay').remove();
   }
 } 
