@@ -2,26 +2,29 @@ import Person from "./Person";
 import UI from "./UI";
 
 let people = [];
-
 export default class Store {
-  static getPeople() {
-    people = JSON.parse(localStorage.getItem('people')) || [];
+  static loadPeople() {
+    const peopleData = JSON.parse(localStorage.getItem('people')) || [];
+    people = peopleData.map(person => new Person(person));
+    return people;
+  }
 
-    return people.map(person => new Person(person));
+  static getPeople() {
+    return people;
   }
 
   static addPerson(person) {
     people.push(person);
+    UI.populateCards(people);
+    UI.populateSidebar(people);
     localStorage.setItem('people', JSON.stringify(people));
-    UI.populateCards();
-    UI.populateSidebar();
   }
 
   static update(person, index) {
     people[index] = person;
-    localStorage.setItem('people', JSON.stringify(people));
+    UI.populateCards(people);
+    UI.populateSidebar(people);
 
-    UI.populateCards();
-    UI.populateSidebar();
+    localStorage.setItem('people', JSON.stringify(people));
   }
 }

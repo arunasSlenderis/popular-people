@@ -1,5 +1,6 @@
 import UI from './UI';
 import Store from './Store';
+import Person from './Person';
 
 export default class Modal {
   static show() {
@@ -43,7 +44,9 @@ export default class Modal {
         id: now.getTime()
       };
 
-      Store.addPerson(data);
+      const person = new Person(data);
+
+      Store.addPerson(person);
       Modal.remove();
     }
   }
