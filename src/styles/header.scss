@@ -1,0 +1,11 @@
+header {
+  height: 70px;
+  padding: 5px;
+
+  .add-person-btn {
+    margin-top: 10px;
+    border: 1px solid $light-blue;
+    color: $light-blue;
+    @include buttonEffects($light-blue, $blue-shadow);
+  }
+}

@@ -1,0 +1,37 @@
+.sidebar {
+  margin-left: 10px;
+  border: 1px solid darken(#eee, 30%);
+  background: #eee;
+
+  .sidebar-title {
+    margin: 7px 3px;
+  }
+
+  .sidebar-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    padding: 3px;
+    white-space: nowrap;
+    align-items: center;
+  
+    .sidebar-rating {
+      justify-self: flex-end;
+  
+      .sidebar-rating-icon {
+        display: inline-block;
+        @include rating($rating-measure / 2);
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+}

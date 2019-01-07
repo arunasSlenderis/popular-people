@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  background: #eee;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.6;
+  transition: all 200ms ease-out;
+}
+
+@media (max-width: 400px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+}
+

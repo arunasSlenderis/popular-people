@@ -1,0 +1,20 @@
+@mixin rating($starSize) {
+  min-width: $starSize;
+  min-height: $starSize;
+  line-height: $starSize;
+  background: url('../img/star.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@mixin buttonEffects($background, $shadow) {
+  &:hover {
+    background-color: $background;
+    color: white;
+  }
+  &:focus {
+    box-shadow: $shadow;
+    outline: 0;
+  }
+}
