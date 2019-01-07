@@ -2,5 +2,5 @@
 
 Clone, npm i.
 
-Dev server: npm start
+Dev server: npm start  
 Prod: npm run build:prod
