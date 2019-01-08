@@ -43,6 +43,18 @@ module.exports = (env, options) => {
                   : 'style-loader'
             },
             { loader: 'css-loader', options: { sourceMap: true } },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                ident: 'postcss',
+                plugins: [
+                  require('autoprefixer')({
+                    browsers: ['last 2 versions', 'not dead', 'iOS >= 8']
+                  })
+                ]
+              }
+            },
             { loader: 'sass-loader', options: { sourceMap: true } }
           ]
         },
@@ -67,7 +79,7 @@ module.exports = (env, options) => {
       watchContentBase: true,
       hot: true,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*'
       }
     }
   };
